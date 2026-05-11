@@ -44,10 +44,11 @@ export const fetchProcesso = async (
     }
   };
 
+  const sanitizedKey = apiKey.trim().replace(/^APIKey\s+/i, '');
   const response = await fetch(url, {
     method: 'POST',
     headers: {
-      'Authorization': `APIKey ${apiKey}`,
+      'Authorization': `APIKey ${sanitizedKey}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(payload)
@@ -81,10 +82,11 @@ export const fetchJurisprudencia = async (
     size: 5
   };
 
+  const sanitizedKey = apiKey.trim().replace(/^APIKey\s+/i, '');
   const response = await fetch(url, {
     method: 'POST',
     headers: {
-      'Authorization': `APIKey ${apiKey}`,
+      'Authorization': `APIKey ${sanitizedKey}`,
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(payload)

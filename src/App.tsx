@@ -34,8 +34,9 @@ function App() {
       alert('A Chave API não pode estar vazia.');
       return;
     }
-    setApiKey(tempKey.trim());
-    localStorage.setItem('@CnjGUI:apiKey', tempKey.trim());
+    const normalizedKey = tempKey.trim().replace(/^APIKey\s+/i, '');
+    setApiKey(normalizedKey);
+    localStorage.setItem('@CnjGUI:apiKey', normalizedKey);
     setShowSettings(false);
   };
 
