@@ -54,7 +54,12 @@ function App() {
       const data = await fetchProcesso(tribunal, npu, apiKey);
       setResult(data);
     } catch (err: any) {
-      setError(err.message || 'Ocorreu um erro inesperado ao conectar à API do CNJ.');
+      const message = err.message || 'Ocorreu um erro inesperado ao conectar à API do CNJ.';
+      setError(message);
+      if (/autenticação|API Key inválida|expirada/i.test(message)) {
+        setTempKey(apiKey);
+        setShowSettings(true);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -74,7 +79,12 @@ function App() {
       const data = await fetchJurisprudencia(tribunal, termo, apiKey);
       setResult(data);
     } catch (err: any) {
-      setError(err.message || 'Ocorreu um erro inesperado ao conectar à API do CNJ.');
+      const message = err.message || 'Ocorreu um erro inesperado ao conectar à API do CNJ.';
+      setError(message);
+      if (/autenticação|API Key inválida|expirada/i.test(message)) {
+        setTempKey(apiKey);
+        setShowSettings(true);
+      }
     } finally {
       setIsLoading(false);
     }
