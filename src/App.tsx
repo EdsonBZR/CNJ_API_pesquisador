@@ -7,6 +7,8 @@ import type { CnjSearchResult } from './api/cnjClient';
 import { Key } from 'lucide-react';
 
 function App() {
+  const defaultApiKey = import.meta.env.VITE_CNJ_API_KEY as string | undefined;
+
   const [apiKey, setApiKey] = useState<string>('');
   const [showSettings, setShowSettings] = useState<boolean>(false);
   const [tempKey, setTempKey] = useState<string>('');
@@ -20,10 +22,12 @@ function App() {
     const savedKey = localStorage.getItem('@CnjGUI:apiKey');
     if (savedKey) {
       setApiKey(savedKey);
+    } else if (defaultApiKey) {
+      setApiKey(defaultApiKey.trim());
     } else {
       setShowSettings(true); // Force user to set key initially
     }
-  }, []);
+  }, [defaultApiKey]);
 
   const handleSaveApiKey = () => {
     if (!tempKey.trim()) {
