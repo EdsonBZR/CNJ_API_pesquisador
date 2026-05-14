@@ -6,3 +6,8 @@ pasta: src/api/cnjClient.ts = linha 81:   size: 5
 
 
 cnj-api-pesquisador.vercel.app
+
+
+npm i @vercel/analytics
+
+import { Analytics } from "@vercel/analytics/next"
